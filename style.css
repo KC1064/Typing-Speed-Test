@@ -1,76 +1,70 @@
-body {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.container {
-    height: 100vh;
-    width: 100vh;
-    background-color: rgb(252, 165, 4);
+body {
+    min-height: 100vh;
     display: flex;
+    padding: 0px 12px;
     justify-content: center;
     align-items: center;
+    background: orange;
 }
-input {
-    position: absolute;
-    top: 45%;
-    opacity: 1;
-    right: 63%;
-    height: 16px;
-}
-.box {
-    width: 600px;
-    height: fit-content;
-    background-color: aliceblue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+
+.wrapper {
+    width: 750px;
+    padding: 30px;
+    background: white;
     border-radius: 12px;
-    border: pink;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
+    box-shadow: 0 15px 15px rgba(0,0,0,0.7);
 }
 
-.parameter {
-    display: flex;
-    gap: 50px;
+.wrapper .content-box {
+    padding: 13px 20px 0;
+    border-radius: 12px;
+    border: 1px solid rgb(95, 92, 92);
 }
 
-#timer, #mistakes, #wpm, #cpm, #tryagain {
+.content-box .content {
+    margin-top: 17px;
     display: flex;
+    padding: 12px 0;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 4px;
+    justify-content: space-between;
+    border-top: 1px solid rgb(212, 61, 61);
 }
 
-#line {
-    height: 2px;
-    width: 560px;
-    background-color: rgba(134, 130, 130, 0.825);
+.result-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: calc(100% - 140px);
 }
 
-.border {
-    border: 2px solid black;
-    /* width: 580px; */
-    padding-left: 8px;
-    padding-right: 8px;
+.result-details li{
+    display: flex;
+    height: 20px;
+    list-style: none;
+    align-items: center;
 }
 
-button {
-    width: 100px;
-    height: 30px;
-    font-size: 15px;
-    border-radius: 8px;
-    background-color: salmon;
+.content button {
+    outline: none;
+    border: none;
+    color: whitesmoke;
+    width: 110px;
+    padding: 8px 0;
+    font-size: 16px;
     cursor: pointer;
-    transition: all 1s ease-in;
+    border-radius: 6px;
+    background: orange;
+    transition: transform 0.5s ease;
 }
 
-button .active {
-    transform: scale(.3);
+.content button:active {
+    transform: scale(0.77);
 }
-
-
