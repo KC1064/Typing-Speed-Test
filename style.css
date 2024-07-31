@@ -7,12 +7,18 @@ body {
 .container {
     height: 100vh;
     width: 100vh;
-    background-color: rgba(229, 165, 46, 0.81);
+    background-color: rgb(252, 165, 4);
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
+input {
+    position: absolute;
+    top: 45%;
+    opacity: 1;
+    right: 63%;
+    height: 16px;
+}
 .box {
     width: 600px;
     height: fit-content;
@@ -56,10 +62,15 @@ body {
 button {
     width: 100px;
     height: 30px;
-    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
     font-size: 15px;
     border-radius: 8px;
-    /* border: none; */
+    background-color: salmon;
+    cursor: pointer;
+    transition: all 1s ease-in;
+}
+
+button .active {
+    transform: scale(.3);
 }
 
 
