@@ -2,11 +2,11 @@ const text = document.querySelector(".typingtext p");
 const input = document.querySelector(".wrapper .input-field");
 const time = document.querySelector(".time span b");
 const mistakes = document.querySelector(".mistake span");
-const cpm = document.querySelector(".wpm span");
-const wpm = document.querySelector(".cpm span");
+const cpm = document.querySelector(".cpm span");
+const wpm = document.querySelector(".wpm span");
 const btn = document.querySelector("button");
 
-//set Value
+// Set values
 let timer;
 let maxTime = 60;
 let timeLeft = maxTime;
@@ -15,72 +15,84 @@ let mistake = 0;
 let isTyping = false;
 
 function loadParagraph() {
-  const paragraph = [
-    "The only limit to our realization of tomorrow is our doubts of today.",
-    "In the end, we will remember not the words of our enemies, but the silence of our friends.",
-    "Life is what happens when you're busy making other plans.",
-    "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
-    "The future belongs to those who believe in the beauty of their dreams.",
-    "You miss 100% of the shots you don't take.",
-    "Success is not final, failure is not fatal: It is the courage to continue that counts.",
-    "The best way to predict your future is to create it.",
-    "Do not go where the path may lead, go instead where there is no path and leave a trail.",
-    "It is our choices, that show what we truly are, far more than our abilities.",
-    "The greatest glory in living lies not in never falling, but in rising every time we fall.",
-    "In three words I can sum up everything I've learned about life: it goes on.",
-    "You must be the change you wish to see in the world.",
-    "To live is the rarest thing in the world. Most people exist, that is all.",
-    "The only way to do great work is to love what you do.",
-    "It does not matter how slowly you go as long as you do not stop.",
-    "If you tell the truth, you don't have to remember anything.",
-    "The only thing we have to fear is fear itself.",
-    "Happiness is not something ready-made. It comes from your own actions.",
-    "Our lives begin to end the day we become silent about things that matter.",
-    "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
-    "Believe you can and you're halfway there.",
-    "It is never too late to be what you might have been.",
-    "The purpose of our lives is to be happy.",
-    "Don't watch the clock; do what it does. Keep going.",
+  const paragraphs = [
+    "The essence of humanity lies in our ability to dream and overcome. It's this spirit that pushes us towards success, improvement, and creation. The countless stories of individuals who have conquered adversity highlight the strength and resilience inherent in the human spirit.",
+    "Throughout history, incredible achievements have sprung from humble beginnings. Visionaries, leaders, and innovators often started with just a dream and steadfast belief. Despite numerous obstacles, their unwavering determination drove them forward, leading to remarkable advancements in various fields, fueled by the unyielding human spirit.",
+    "The quest for knowledge is central to human nature. Our curiosity propels us to explore and understand the universe's mysteries. This relentless pursuit has led to groundbreaking discoveries and innovations, transforming our world and pushing the boundaries of what is known and possible.",
+    "Education is more than just acquiring facts; it's about cultivating a deeper understanding of our world and our place within it. This drive to learn and explore highlights our intellectual capabilities and the desire to expand our horizons, contributing to continuous personal and societal growth.",
+    "Human history is filled with stories of those who, starting with nothing but a dream, have achieved greatness. Their journeys are marked by perseverance and resilience, demonstrating that the human spirit can overcome even the most daunting challenges to achieve significant progress and change.",
+    "The relentless pursuit of betterment is a defining feature of humanity. This drive manifests in various forms, from personal triumphs to significant societal advancements. The will to succeed, improve, and create underscores our actions and fuels the continuous progress of our civilization."
   ];
-
-  const randomidx = Math.floor(Math.random() * paragraph.length);
+  
+  const randomIdx = Math.floor(Math.random() * paragraphs.length); // Fixed 'paragraph' to 'paragraphs'
   text.innerHTML = "";
-  for (const char of paragraph[randomidx]) {
+  for (const char of paragraphs[randomIdx]) {
     text.innerHTML += `<span>${char}</span>`;
   }
 
   text.querySelectorAll("span")[0].classList.add("active");
 
-  document.addEventListener('keydown',()=>input.focus());
-  text.addEventListener("click",()=>{input.focus()})
+  document.addEventListener("keydown", () => input.focus());
+  text.addEventListener("click", () => {
+    input.focus();
+  });
 }
 
-//Hanndling User Input
 function initTyping() {
-  const char = text.querySelectorAll("span");
+  const chars = text.querySelectorAll("span"); // Renamed 'char' to 'chars' to avoid confusion
   const typedChar = input.value.charAt(charIndex);
-  if (charIndex < char.length && timeLeft > 0) {
-    if (char[charIndex].innerText === typedChar) {
-      char[charIndex].classList.add("correct");
-    //   console.log("correct");
+
+  if (charIndex < chars.length && timeLeft > 0) {
+    if (!isTyping) {
+      timer = setInterval(initTime, 1000);
+      isTyping = true;
+    }
+    if (chars[charIndex].innerText === typedChar) {
+      chars[charIndex].classList.add("correct");
     } else {
       mistake++;
-      char[charIndex].classList.add("incorrect");
-    //   console.log("Incorrect");
+      chars[charIndex].classList.add("incorrect");
     }
     charIndex++;
 
-    char[charIndex].classList.add('active');
+    if (charIndex < chars.length) {
+      chars[charIndex].classList.add("active");
+    }
 
     mistakes.innerText = mistake;
-  }
-  else{
-
+    let cpmVal = charIndex - mistake;
+    cpm.innerText = cpmVal;
+  } else if (charIndex >= chars.length) { // Check if typing is complete
+    clearInterval(timer);
+    input.value = "";
   }
 }
 
+function initTime() {
+  if (timeLeft > 0) {
+    timeLeft--;
+    time.innerText = timeLeft;
+    let wpmVal = Math.round((charIndex - mistake) / 5 / ((maxTime - timeLeft) / 60)); // Fixed WPM calculation
+    wpm.innerText = wpmVal;
+  } else {
+    clearInterval(timer);
+  }
+}
+
+function reset() {
+  loadParagraph();
+  clearInterval(timer);
+  timeLeft = maxTime;
+  time.innerText = timeLeft;
+  input.value = "";
+  charIndex = 0;
+  mistake = 0;
+  isTyping = false;
+  wpm.innerText = 0;
+  cpm.innerText = 0;
+  mistakes.innerText = 0;
+}
+
 input.addEventListener("input", initTyping);
+btn.addEventListener("click", reset);
 loadParagraph();
-
-
-/// 36

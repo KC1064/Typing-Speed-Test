@@ -12,7 +12,9 @@ body {
     justify-content: center;
     align-items: center;
     background: orange;
+    flex-direction: column;
 }
+
 
 .wrapper {
     width: 750px;
@@ -75,10 +77,14 @@ body {
 
 .typingtext p span.active {
     color: orange;
+    font-weight: bolder;
 }
 
 .typingtext p span.correct {
     color: green;
+    outline: 1px solid white;
+    border-radius: 4px;
+    background: rgb(147, 245, 147);
 }
 
 .typingtext p span.incorrect{
