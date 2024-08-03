@@ -9,13 +9,6 @@ A web-based application to test and improve your typing speed using HTML, CSS, a
 - Highlights correct and incorrect letters in real-time
 - Provides a reset button to start a new test
 
-## Built With
-<div style="text-align: center; display: flex; justify-content: center;">
-    <span style="height: max-content; width: max-content; padding: 4px 8px; background-color: #E34F26; color: white; font-weight: bold;">HTML</span>
-    <span style="height: max-content; width: max-content; padding: 4px 8px; background-color: #264de4; color: white; font-weight: bold;">CSS</span>
-    <span style="height: max-content; width: max-content; padding: 4px 8px; background-color: #f0db4f; color: black; font-weight: bold;">JavaScript</span>
-</div>
-
 ## Demo
 <video width="600" controls autoplay>
   <source src="./demo.mp4" type="video/mp4">
