@@ -24,7 +24,7 @@ function loadParagraph() {
     "The relentless pursuit of betterment is a defining feature of humanity. This drive manifests in various forms, from personal triumphs to significant societal advancements. The will to succeed, improve, and create underscores our actions and fuels the continuous progress of our civilization."
   ];
   
-  const randomIdx = Math.floor(Math.random() * paragraphs.length); // Fixed 'paragraph' to 'paragraphs'
+  const randomIdx = Math.floor(Math.random() * paragraphs.length);
   text.innerHTML = "";
   for (const char of paragraphs[randomIdx]) {
     text.innerHTML += `<span>${char}</span>`;
@@ -39,7 +39,7 @@ function loadParagraph() {
 }
 
 function initTyping() {
-  const chars = text.querySelectorAll("span"); // Renamed 'char' to 'chars' to avoid confusion
+  const chars = text.querySelectorAll("span"); 
   const typedChar = input.value.charAt(charIndex);
 
   if (charIndex < chars.length && timeLeft > 0) {
@@ -62,7 +62,7 @@ function initTyping() {
     mistakes.innerText = mistake;
     let cpmVal = charIndex - mistake;
     cpm.innerText = cpmVal;
-  } else if (charIndex >= chars.length) { // Check if typing is complete
+  } else if (charIndex >= chars.length) { 
     clearInterval(timer);
     input.value = "";
   }
